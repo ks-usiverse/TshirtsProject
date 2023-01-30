@@ -35,3 +35,7 @@ body{
 .amount{
 	display: inline-block;
 }
+
+.hide{
+	display: none;
+}

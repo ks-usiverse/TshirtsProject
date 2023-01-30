@@ -10,8 +10,7 @@
         <h6><strong>{{product.name}}</strong></h6>
         test
         <hr>
-        <button class="btn btn-success">In den Warenkorb legen
-</button>
+        <button data-product={{product.id}} data-action="add" class="btn btn-success cart-update">In den Warenkorb legen</button>
         <a href="#" class="btn btn-success">Ansehen</a>
         <h4 style="display: inline-block; float: right"><strong>${{product.price|floatformat:2}}</strong></h4>
 

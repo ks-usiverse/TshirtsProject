@@ -36,8 +36,8 @@
                 <div style="flex:1"><strong>${{item.product.price|floatformat:2}}</strong></div>
                 <div style="flex:1"><strong>{{item.quantity}}</strong>
                     <div class="amount">
-                        <img class="amount_btn" src="{% static 'images/upload.png' %}">
-                        <img class="amount_btn" src="{% static 'images/down.png' %}">
+                        <img data-product={{item.product.id}} data-action="add"  class="amount_btn cart-update" src="{% static 'images/upload.png' %}">
+                        <img data-product={{item.product.id}} data-action="remove"  class="amount_btn cart-update" src="{% static 'images/down.png' %}">
                     </div>
 
                 </div>
