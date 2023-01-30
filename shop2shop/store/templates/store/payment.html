@@ -1,8 +1,8 @@
-{% extends 'store/main.html' %}
+{% extends 'store/main.html'%}
 {% load static %}
 {% block content %}
 <h3>Bezahlung</h3>
- <div class="row">
+<div class="row">
     <div class="col-lg-6">
         <div class="box">
             <form>
@@ -14,7 +14,6 @@
                         <input required class="form-control" type="email" name="email" placeholder="Email..">
                     </div>
                 </div>
-
                 <div>
                     <hr>
                     <p>Lieferinformationen:</p>
@@ -35,39 +34,34 @@
                         <input class="form-control" type="text" name="country" placeholder="Land..">
                     </div>
                 </div>
-
                 <hr>
                 <input class="btn btn-success btn-block" type="submit" value="Weiter">
             </form>
         </div>
-
         <br>
-        <div class="box" id="payment-info">
-            <small>Der Zahlungsknopf wird hier hinzugefügt werden.
-            </small>
-            <button id="make-payment">💰Bezahlen</button>
-            <div id="paypal-button-container"></div>
-        </div>
-
+            <div class="box" id="payment-info">
+                <small>Der Zahlungsknopf wird hier hinzugefügt werden</small>
+                <button id="make-payment">💰Bezahlen</button>
+                <div id="paypal-button-container"></div>
+            </div>
     </div>
-
     <div class="col-lg-6">
         <div class="box">
-            <a class="btn btn-outline-secondary" href="{% url 'cart' %}">🔙 Zurück zum Warenkorb</a>
-            <hr>
-            <h3>Bestellzusammenfassung</h3>
-            <hr>
+        <a class="btn btn-outline-secondary" href="{% url 'cart' %}">🔙Zurück zum Warenkorb</a>
+        <hr>
+        <h3>Bestellzusammenfassung</h3>
+        <hr>
+        {% for item in items %}
+        <div class="cart_line">
+                <div style="flex:2"><img class="cart_img" src="{{item.product.imageURL}}"></div>
+                <div style="flex:2"><strong>{{item.product.name}}</strong></div>
+                <div style="flex:1"><strong>${{item.product.price|floatformat:2}}</strong></div>
+                <div style="flex:1"><strong>{{item.quantity}}</strong></div>
 
-            <div class="cart_line">
-                <div style="flex:2"><img class="cart_img" src="{% static 'images/shop2worldbananarepublic.jpg' %}"></div>
-                <div style="flex:2"><strong>shop2</strong></div>
-                <div style="flex:1"><strong>10000$</strong></div>
-                <div style="flex:1"><strong>x100</strong></div>
-            </div>
-
-            <h5>Produktanzahl:   x100</h5>
-            <h5>Gesamtsumme:   1000000$</h5>
         </div>
+        {% endfor %}
+        <h5>Produktanzahl: {{order.get_cart_items}} </h5>
+        <h5>Summe : ${{order.get_cart_total|floatformat:2}} </h5>
     </div>
 </div>
-{% endblock content %}
+</div>{% endblock content %}

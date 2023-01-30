@@ -1,5 +1,25 @@
-{% extends 'store/main.html' %}
+{% extends 'store/main.html'%}
 {% load static %}
 {% block content %}
-    <h3>Geschäft</h3>
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-lg-4">
+        <div class= "box">
+        <img width=100% src="{{product.imageURL}}" alt="">
+        <h6><strong>{{product.name}}</strong></h6>
+        test
+        <hr>
+        <button class="btn btn-success">In den Warenkorb legen
+</button>
+        <a href="#" class="btn btn-success">Ansehen</a>
+        <h4 style="display: inline-block; float: right"><strong>${{product.price|floatformat:2}}</strong></h4>
+
+        </div>
+
+    </div>
+    {% endfor %}
+
+
+</div>
 {% endblock content %}

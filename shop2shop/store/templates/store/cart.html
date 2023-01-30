@@ -1,4 +1,4 @@
-{% extends 'store/main.html' %}
+{% extends 'store/main.html'%}
 {% load static %}
 {% block content %}
 <div class="row">
@@ -8,8 +8,8 @@
 
         <table class="table">
             <tr>
-                <th><h5>Produkt: <strong>11</strong></h5></th>
-				<th><h5>Preis:<strong> 10000$</strong></h5></th>
+                <th><h5>Produkt: <strong>{{order.get_cart_items}}</strong></h5></th>
+				<th><h5>Preis:<strong> ${{order.get_cart_total|floatformat:2}}</strong></h5></th>
                 <th><a style="float:right; margain:7px" class="btn btn-success" href="{% url 'checkout' %}">Bezahlung</a></th>
 
             </tr>
@@ -29,21 +29,23 @@
                 <div style="flex:1"><strong>Summe</strong></div>
 
             </div>
+            {% for item in items %}
             <div class="cart_line">
-                <div style="flex:2"><img class="cart_img" src="{% static 'images/shop2worldbananarepublic.jpg' %}"></div>
-                <div style="flex:2"><strong>Shop2</strong></div>
-                <div style="flex:1"><strong>10000$</strong></div>
-                <div style="flex:1"><strong>1</strong>
+                <div style="flex:2"><img class="cart_img" src="{{item.product.imageURL}}"></div>
+                <div style="flex:2"><strong>{{item.product.name}}</strong></div>
+                <div style="flex:1"><strong>${{item.product.price|floatformat:2}}</strong></div>
+                <div style="flex:1"><strong>{{item.quantity}}</strong>
                     <div class="amount">
                         <img class="amount_btn" src="{% static 'images/upload.png' %}">
                         <img class="amount_btn" src="{% static 'images/down.png' %}">
                     </div>
 
                 </div>
-                <div style="flex:1"><strong>1000000$</strong></div>
+                <div style="flex:1"><strong>${{item.get_total}}</strong></div>
 
             </div>
+            {% endfor %}
     </div>
 </div>
 
-{% endblock content %}
+</div>{% endblock content %}
