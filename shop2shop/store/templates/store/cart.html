@@ -1,0 +1,49 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+	<div class ="col-lig-12">
+        <div class= "box">
+            <a class="btn btn-outline-secondary" href="{% url 'store' %}">🔙Weitereinkaufen</a>
+
+        <table class="table">
+            <tr>
+                <th><h5>Produkt: <strong>11</strong></h5></th>
+				<th><h5>Preis:<strong> 10000$</strong></h5></th>
+                <th><a style="float:right; margain:7px" class="btn btn-success" href="{% url 'checkout' %}">Bezahlung</a></th>
+
+            </tr>
+        </table>
+        </div>
+    </div>
+
+    <br>
+
+    <div class ="col-lig-12">
+        <div class= "box">
+            <div class="cart_line">
+                <div style="flex:2"></div>
+                <div style="flex:2"><strong>Produkt</strong></div>
+                <div style="flex:1"><strong>Preis</strong></div>
+                <div style="flex:1"><strong>Anzahl</strong></div>
+                <div style="flex:1"><strong>Summe</strong></div>
+
+            </div>
+            <div class="cart_line">
+                <div style="flex:2"><img class="cart_img" src="{% static 'images/shop2worldbananarepublic.jpg' %}"></div>
+                <div style="flex:2"><strong>Shop2</strong></div>
+                <div style="flex:1"><strong>10000$</strong></div>
+                <div style="flex:1"><strong>1</strong>
+                    <div class="amount">
+                        <img class="amount_btn" src="{% static 'images/upload.png' %}">
+                        <img class="amount_btn" src="{% static 'images/down.png' %}">
+                    </div>
+
+                </div>
+                <div style="flex:1"><strong>1000000$</strong></div>
+
+            </div>
+    </div>
+</div>
+
+{% endblock content %}
