@@ -7,17 +7,40 @@ for(var i =0 ; i <upatedBtns.length; i++ ){
         console.log('productID:',productID , 'action:',action  )
 
         console.log('user:',user)
-        if(user === 'AnonymousUser'){
-            console.log('login failed')
+        if(user == 'AnonymousUser'){
+            addCookieItem(productID,action)
+
         }else{
             updateUserOrder(productID,action)
         }
     })
 }
 
+function addCookieItem(productID,action){
+    console.log('login failed!!')
+    if (action == 'add'){
+        if (cart[productID] == undefined){
+            cart[productID] = {'quantity':1}
+        }else {
+            cart[productID]['quantity'] += 1
+        }
+
+    }
+    if (action == 'remove'){
+        cart[productID]['quantity'] -= 1
+        if (cart[productID]['quantity'] <= 0){
+            console.log('product deleted')
+            delete cart[productID];
+        }
+    }
+    console.log('Cart:', cart)
+    document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+    location.reload()
+
+}
 
 function updateUserOrder(productID,action){
-    console.log('You are now logged in, sending information')
+    console.log('send info after login')
 
     var url ='/update_item/'
     fetch(url,{
@@ -37,6 +60,7 @@ function updateUserOrder(productID,action){
     .then((data) =>{
         console.log('data:', data)
         location.reload()
+
     })
 
 }

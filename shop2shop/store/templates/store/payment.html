@@ -4,8 +4,9 @@
 <h3>Bezahlung</h3>
 <div class="row">
     <div class="col-lg-6">
-        <div class="box" id='form_bound_info'>
+        <div class="box" id="form_bound_info">
             <form id='form'>
+
                 <div id="user_info">
                     <div>
                         <input required class="form-control" type="text" name="name" placeholder="Name..">
@@ -40,7 +41,7 @@
         </div>
         <br>
             <div class="box hide" id="payment-info">
-                <small>Der Zahlungsknopf wird hier hinzugefügt werden</small>
+                <small>Zahlungsschaltfläche wird hier hinzugefügt werden</small>
                 <button id="make-payment">💰Bezahlen</button>
                 <div id="paypal-button-container"></div>
             </div>
@@ -68,7 +69,6 @@
 <script type = "text/javascript">
     var shipping = '{{order.shipping}}'
     var total = '{{order.get_cart_total}}'
-
 
     if (shipping == 'False'){
         document.getElementById('delivery_info').innerHTML = ''
@@ -132,8 +132,31 @@
 
         }
 
-        console.log('delivery_info:', shippingInfo)
-        console.log('user_info:', userFormData)
+        console.log('delivery info:', shippingInfo)
+        console.log('user info:', userFormData)
+
+    var url ='/process_order/'
+    fetch(url,{
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken': csrftoken
+
+        },
+        body:JSON.stringify({'form': userFormData,'shipping' : shippingInfo})
+
+    })
+
+    .then((response) =>{
+        return response.json()
+    })
+    .then((data) =>{
+        console.log('Sucess:', data);
+        alert('Bestellung abgeschlossen');
+        cart = {}
+        document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        window.location.href= "{% url 'store' %}"
+    })
 
     }
 
