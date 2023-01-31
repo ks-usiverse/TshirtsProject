@@ -67,7 +67,8 @@
 
 <script type = "text/javascript">
     var shipping = '{{order.shipping}}'
-    var total = '{{order.get_cart_total|floatformat:2}}'
+    var total = '{{order.get_cart_total}}'
+
 
     if (shipping == 'False'){
         document.getElementById('delivery_info').innerHTML = ''
