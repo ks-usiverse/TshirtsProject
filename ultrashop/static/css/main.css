@@ -1,0 +1,55 @@
+body{
+	background-color: white;
+}
+
+.box{
+	box-shadow:hsl(32, 85%, 50%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 3px;
+	padding: 11px;
+	
+}
+
+.cart_line{
+	display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+
+}
+
+.cart_img{
+	width: 100px;
+}
+
+
+
+.amount_btn{
+	width: 12px;
+	cursor: pointer;
+	display: block;
+	margin-top: 5px;
+	transition:.1s;
+}
+
+
+.amount{
+	display: inline-block;
+}
+
+.hide{
+	display:none;
+}
+
+.comment {
+    border-top:dotted 1px rgb(223, 12, 12);
+    font-size:0.9em;
+	margin: 20px 0px 20px 20px;
+	background-color: rgb(233, 203, 31);
+}
+
+.editcomment {
+    
+    background-color: rgb(255, 136, 0);
+}

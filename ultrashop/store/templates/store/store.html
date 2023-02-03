@@ -1,0 +1,31 @@
+{% extends 'store/main.html'%} {% load static %} {% block content %}
+
+            <h3 class="mt-5 text-center">SiA Merch</h3>
+
+<div class="d-flex justify-content-center pt-5">
+  {% for product in products %}
+  <div class="col-lg-4">
+    <div class="card">
+        <img width="100%" src="{{product.imageURL}}" />
+    <div class="card-body">
+      <h6><strong>{{product.name}}</strong></h6>
+      {{product.description}}
+      <hr />
+        <button data-product="{{product.id}}" data-action="add" class="cart_update" style="background-color: white;border: none;">
+        <i class="fa fa-cart-arrow-down fa-2x mr-2" aria-hidden="true"></i>
+      </button>
+        <!--
+      <button data-product="{{product.id}}" data-action="add">
+        <i class="fa fa-cart-arrow-down fa-2x mr-2" aria-hidden="true"></i>
+      </button>
+      -->
+      <h4 style="display: inline-block; float: right">
+        <strong>${{product.price|floatformat:2}}</strong>
+      </h4>
+        </div>
+
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}

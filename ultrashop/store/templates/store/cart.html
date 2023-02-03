@@ -1,0 +1,62 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+    <div class="row mt-5">
+    <div class="col-3">
+        <div class="card">
+            <a class="btn btn-outline-secondary mb-2" href="{% url 'store' %}">🔙Weitereinkaufen</a>
+            <h5>Produkt: <strong>{{ order.get_cart_items }}</strong></h5>
+            <h5>Preis:<strong> ${{ order.get_cart_total|floatformat:2}}</strong></h5>
+            <a class="btn btn-primary" href="{% url 'checkout' %}">Bezahlung</a>
+        </div>
+    </div>
+
+    <div class="col-9">
+        <div class="card">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Bild</th>
+                    <th scope="col">Produkt</th>
+                    <th scope="col">Preis</th>
+                    <th scope="col">Anzahl</th>
+                    <th scope="col">Summe</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <th scope="row"><img class="cart_img" src="{{ item.product.imageURL }}"/></th>
+                        <td><strong>{{ item.product.name }}</strong></td>
+                        <td><strong>${{ item.product.price|floatformat:2}}</strong></td>
+                        <td><strong>{{ item.quantity }}</strong></td>
+                        <td>
+                            <strong>${{ item.get_total }}</strong>
+
+                        </td>
+                        <td>
+                            <div>
+                                <img
+                                        data-product="{{ item.product.id }}"
+                                        data-action="add"
+                                        class="amount_btn cart_update"
+                                        src="{% static 'images/upload.png' %}"
+                                />
+                                <img
+                                        data-product="{{ item.product.id }}"
+                                        data-action="remove"
+                                        class="amount_btn cart_update"
+                                        src="{% static 'images/down.png' %}"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+{% endblock content %}
+</div>
